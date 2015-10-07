@@ -30,6 +30,14 @@ should succeed. However, out of the box, Hadoop did not properly map the `wasb(s
 URIs to the correct filesystem implementation. To fix this, I had to ensure that
 `hadoop-2.7.1/share/hadoop/tools/lib/*` was in the `HADOOP_CLASSPATH`.
 
+As of currently, Spark might blow up with
+
+> `java.io.IOException: No FileSystem for scheme: wasbs`
+
+This is because in my shell, I had already run `hadoop.cmd`, correctly augmenting
+`HADOOP_CLASSPATH`. Either run `hadoop.cmd`, or augment the classpath manually
+before launching Spark.
+
 ## Listing Files In Azure Blob Storage
 
 First, we should be able to use a handful of classes from `org.apache.hadoop.fs` to
